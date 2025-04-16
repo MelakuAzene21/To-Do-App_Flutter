@@ -66,8 +66,7 @@ mainAxisAlignment: MainAxisAlignment.center,
 children: <Widget>[
 CommonLogo(),
 HeightBox(10),
-"CREATE YOUR
-ACCOUNT".text.size(22).yellow100.make(),
+"CREATE YOUR ACCOUNT".text.size(22).yellow100.make(),
 TextField(
 controller: emailController,
 keyboardType: TextInputType.text,
@@ -76,8 +75,7 @@ filled: true,
 fillColor: Colors.white,
 errorStyle: TextStyle(color:
 Colors.white),
-errorText: _isNotValidate ? "Enter
-Proper Info" : null,
+errorText: _isNotValidate ? "Enter Proper Info" : null,
 hintText: "Email",
 border: OutlineInputBorder(
 borderRadius:
@@ -105,8 +103,7 @@ filled: true,
 fillColor: Colors.white,
 errorStyle: TextStyle(color:
 Colors.white),
-errorText: _isNotValidate ? "Enter
-Proper Info" : null,
+errorText: _isNotValidate ? "Enter Proper Info" : null,
 hintText: "Password",
 border: OutlineInputBorder(
 borderRadius:
@@ -118,8 +115,7 @@ GestureDetector(
 registerUser()
 },
 child: VxBox(child:
-"Register".text.white.makeCentered().p16()).green600.roundedLg.m
-ake().px16().py16(),
+"Register".text.white.makeCentered().p16()).green600.roundedLg.make().px16().py16(),
 ),
 ]),
 GestureDetector(

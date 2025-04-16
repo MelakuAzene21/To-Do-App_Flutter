@@ -39,6 +39,17 @@ android {
     }
 }
 
+<details> 
+<summary>
+<code>android/build.gradle.kts
+</code>
+</summary>
+android {
+    ndkVersion = "27.0.12077973"
+}
+</details>
+
+
 flutter {
     source = "../.."
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/dashboard.dart';
-import 'package:flutter_todo_app/registration.dart';
+import 'package:front/dashboard.dart';
+import 'package:front/registration.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'applogo.dart';
@@ -70,8 +70,7 @@ child: Column(
 mainAxisAlignment: MainAxisAlignment.center,
 children: <Widget>[
 CommonLogo(),
-HeightBox(10),"Email Sign-
-In".text.size(22).yellow100.make(),
+HeightBox(10),"Email Sign-In".text.size(22).yellow100.make(),
 TextField(
 controller: emailController,
 keyboardType: TextInputType.text,
@@ -79,8 +78,7 @@ decoration: InputDecoration(
 filled: true,
 fillColor: Colors.white,
 hintText: "Email",
-errorText: _isNotValidate ? "Enter
-Proper Info" : null,
+errorText: _isNotValidate ? "Enter Proper Info" : null,
 border: OutlineInputBorder(borderRadius:
 BorderRadius.all(Radius.circular(10.0)))),
 ).p4().px24(),
@@ -90,8 +88,7 @@ keyboardType: TextInputType.text,
 decoration: InputDecoration(
 filled: true,
 fillColor: Colors.white,hintText: "Password",
-errorText: _isNotValidate ? "Enter
-Proper Info" : null,
+errorText: _isNotValidate ? "Enter Proper Info" : null,
 border: OutlineInputBorder(
 borderRadius:
 BorderRadius.all(Radius.circular(10.0)))),
@@ -117,8 +114,7 @@ Navigator.push(context, MaterialPageRoute(builder:
 child: Container(
 height: 25,
 color: Colors.lightBlue,
-child: Center(child: "Create a new Account..! Sign
-Up".text.white.makeCentered())),
+child: Center(child: "Create a new Account..! Sign Up".text.white.makeCentered())),
 ),
 ),
 );
