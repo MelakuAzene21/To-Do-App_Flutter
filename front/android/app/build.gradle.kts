@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.front"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -38,17 +38,6 @@ android {
         }
     }
 }
-
-<details> 
-<summary>
-<code>android/build.gradle.kts
-</code>
-</summary>
-android {
-    ndkVersion = "27.0.12077973"
-}
-</details>
-
 
 flutter {
     source = "../.."
