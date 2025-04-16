@@ -32,7 +32,7 @@ class _DashboardState extends State<Dashboard> {
       var regBody = {
         "userId": userId,
         "title": _todoTitle.text,
-        "desc": _todoDesc.text,
+        "description": _todoDesc.text,
       };
       var response = await http.post(
         Uri.parse(addtodo),
@@ -153,7 +153,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: ListTile(
                                   leading: Icon(Icons.task),
                                   title: Text('${items![index]['title']}'),
-                                  subtitle: Text('${items![index]['desc']}'),
+                                  subtitle: Text('${items![index]['description']}'),
                                   trailing: Icon(Icons.arrow_back),
                                 ),
                               ),

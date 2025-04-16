@@ -27,26 +27,37 @@ initSharedPref();
 void initSharedPref() async{
 prefs = await SharedPreferences.getInstance();
 }
-void loginUser() async{
-if(emailController.text.isNotEmpty &&passwordController.text.isNotEmpty){
-var reqBody = {
-"email":emailController.text,
-"password":passwordController.text
-};
-var response = await http.post(Uri.parse(login),
-headers: {"Content-Type":"application/json"},
-body: jsonEncode(reqBody)
-);
-var jsonResponse = jsonDecode(response.body);
-if(jsonResponse['status']){
-var myToken = jsonResponse['token'];
-prefs.setString('token', myToken);
-Navigator.push(context, MaterialPageRoute(builder:
-(context)=>Dashboard(token: myToken)));
-}else{
-print('Something went wrong');
-}
-}
+void loginUser() async {
+  if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+    var reqBody = {
+      "email": emailController.text,
+      "password": passwordController.text
+    };
+    try {
+      var response = await http.post(
+        Uri.parse(login),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(reqBody),
+      );
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      var jsonResponse = jsonDecode(response.body);
+      print('JSON response: $jsonResponse');
+      if (jsonResponse['status']) {
+        var myToken = jsonResponse['token'];
+        prefs.setString('token', myToken);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard(token: myToken)));
+      } else {
+        print('Login failed: $jsonResponse');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  } else {
+    setState(() {
+      _isNotValidate = true;
+    });
+  }
 }
 @override
 Widget build(BuildContext context) {

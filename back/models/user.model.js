@@ -20,31 +20,15 @@ const userSchema = new Schema({
   },
 }, { timestamps: true });
 
-// Used while encrypting user-entered password
-userSchema.pre("save", async function () {
-  const user = this;
-  if (!user.isModified("password")) {
-    return;
+userSchema.pre('save', async function (next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10);
   }
-
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(user.password, salt);
-    user.password = hash;
-  } catch (err) {
-    throw err;
-  }
+  next();
 });
 
-// Used during sign-in to compare passwords
 userSchema.methods.comparePassword = async function (candidatePassword) {
-  try {
-    console.log('Comparing password:', this.password);
-    const isMatch = await bcrypt.compare(candidatePassword, this.password);
-    return isMatch;
-  } catch (error) {
-    throw error;
-  }
+  return await bcrypt.compare(candidatePassword, this.password);
 };
 
 const UserModel = db.model('user', userSchema);

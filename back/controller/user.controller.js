@@ -13,17 +13,19 @@ exports.register = async (req, res, next) => {
 
     const response = await UserServices.registerUser(email, password);
 
-    res.json({ status: true, success: 'User registered successfully' });
+    res.status(201).json({ status: true, success: 'User registered successfully' });
   } catch (err) {
     console.log("---> err -->", err);
+    res.status(400).json({ status: false, message: err.message });
+
     next(err);
   }
 };
 
-// Login controller
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log('Login attempt:', { email, password });
 
     if (!email || !password) {
       throw new Error('Parameters are not correct');
@@ -39,13 +41,12 @@ exports.login = async (req, res, next) => {
       throw new Error('Username or password does not match');
     }
 
-    // Create token
     const tokenData = { _id: user._id, email: user.email };
     const token = await UserServices.generateAccessToken(tokenData, "secret", "1h");
 
     res.status(200).json({ status: true, success: "Login successful", token });
   } catch (error) {
     console.log("err ---->", error);
-    next(error);
+    res.status(500).json({ status: false, error: error.message });
   }
 };
